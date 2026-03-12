@@ -1,0 +1,364 @@
+/* ============================
+   PRODUCT SHOWCASE — Clean Edition
+   Full-viewport scroll-snap
+   ============================ */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* Wrapper */
+.showcase-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.showcase-gradient-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: background 0.7s ease;
+}
+
+/* Subtle top spotlight */
+.showcase-gradient-bg::after {
+  content: "";
+  position: absolute;
+  top: -30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================
+   OVERLAY — Fixed Info Layer
+   ============================ */
+.showcase-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 100;
+  pointer-events: none;
+  padding: 30px clamp(20px, 4vw, 50px);
+}
+
+.showcase-overlay a,
+.showcase-overlay button {
+  pointer-events: auto;
+}
+
+/* Left Info */
+.showcase-left {
+  position: absolute;
+  top: 110px;
+  left: clamp(20px, 4vw, 50px);
+  max-width: 280px;
+}
+
+.showcase-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.showcase-left p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+}
+
+/* Right Info — Flavor + Sizes */
+.showcase-right {
+  position: absolute;
+  top: 110px;
+  right: clamp(20px, 4vw, 50px);
+  text-align: center;
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.showcase-flavor {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.showcase-sizes {
+  display: flex;
+  gap: 10px;
+}
+
+.showcase-size-pill {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.showcase-size-pill:hover,
+.showcase-size-pill.active {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+/* ============================
+   BOTTOM BAR
+   ============================ */
+.showcase-bottom {
+  position: absolute;
+  bottom: 35px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(20px, 4vw, 50px);
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.showcase-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.showcase-cta {
+  display: inline-block;
+  padding: 13px 32px;
+  background: #fff;
+  color: #111;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.showcase-cta:hover {
+  background: #e8e8e8;
+}
+
+.showcase-cta:active {
+  transform: scale(0.97);
+}
+
+/* Divider line + text */
+.showcase-bottom-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.showcase-line {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: rgba(255,255,255,0.35);
+}
+
+.showcase-choose-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  white-space: nowrap;
+}
+
+/* ============================
+   DOT NAVIGATION
+   ============================ */
+.showcase-dots {
+  position: absolute;
+  right: clamp(12px, 3vw, 50px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.showcase-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.showcase-dot.active {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.35);
+}
+
+.showcase-dot:hover:not(.active) {
+  background: rgba(255,255,255,0.4);
+}
+
+/* ============================
+   SCROLL-SNAP CONTAINER
+   ============================ */
+.showcase-scroll {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.showcase-scroll::-webkit-scrollbar { display: none; }
+.showcase-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================
+   SECTION (each product)
+   ============================ */
+.showcase-section {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.showcase-section-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Giant Background Text */
+.showcase-bg-text {
+  position: absolute;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(140px, 20vw, 320px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 12px;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Product Image */
+.showcase-product-img {
+  position: relative;
+  z-index: 2;
+  max-height: 65vh;
+  width: auto;
+  max-width: 400px;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+/* SVG Fallback */
+.showcase-placeholder-svg {
+  position: relative;
+  z-index: 2;
+  max-height: 65vh;
+  width: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+/* Active state — slide into view */
+.showcase-section.active .showcase-bg-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.showcase-section.active .showcase-product-img,
+.showcase-section.active .showcase-placeholder-svg {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================
+   RESPONSIVE — Tablet
+   ============================ */
+@media (max-width: 1024px) {
+  .showcase-left { top: 85px; max-width: 220px; }
+  .showcase-left h2 { font-size: 34px; }
+  .showcase-right { top: 85px; }
+  .showcase-size-pill { width: 58px; height: 58px; font-size: 0.7rem; }
+  .showcase-bg-text { font-size: clamp(100px, 16vw, 220px); }
+  .showcase-product-img, .showcase-placeholder-svg { max-height: 55vh; max-width: 320px; }
+}
+
+/* ============================
+   RESPONSIVE — Mobile
+   ============================ */
+@media (max-width: 767px) {
+  .showcase-left { display: none; }
+
+  .showcase-right {
+    top: auto;
+    bottom: 140px;
+    right: 16px;
+    left: 16px;
+    text-align: center;
+  }
+
+  .showcase-sizes { justify-content: center; }
+  .showcase-size-pill { width: 60px; height: 60px; }
+  .showcase-bg-text { font-size: clamp(70px, 20vw, 140px); letter-spacing: 6px; }
+  .showcase-product-img, .showcase-placeholder-svg { max-height: 48vh; max-width: 280px; }
+  .showcase-bottom { bottom: 16px; }
+  .showcase-bottom-center { display: none; }
+  .showcase-price { font-size: 1.3rem; }
+  .showcase-cta { padding: 11px 24px; font-size: 0.8rem; }
+  .showcase-dots { right: 10px; gap: 8px; }
+  .showcase-dot { width: 8px; height: 8px; }
+}
+
+@media (max-width: 400px) {
+  .showcase-bg-text { font-size: clamp(50px, 18vw, 110px); letter-spacing: 4px; }
+  .showcase-product-img, .showcase-placeholder-svg { max-height: 40vh; max-width: 220px; }
+  .showcase-size-pill { width: 50px; height: 50px; font-size: 0.65rem; }
+}
