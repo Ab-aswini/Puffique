@@ -1,0 +1,19 @@
+{
+    "version": "3.6.2",
+    "store": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0",
+    "paths": {
+        "agents": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/agents",
+        "rules": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/rules",
+        "skills": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/skills",
+        "config": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/config",
+        "templates": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/templates",
+        "workflows": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/workflows",
+        "shared": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/.shared",
+        "logs": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/.agent-os/logs",
+        "memory": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/memory",
+        "docs": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/docs",
+        "scripts": "C:/Users/aswin/.agent-os/projects/3cbc07c044c0/scripts"
+    },
+    "project": "D:/march-10/puffique",
+    "created": "2026-03-12T14:49:08.166Z"
+}

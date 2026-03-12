@@ -20,9 +20,9 @@ export default function Locations() {
         {locations.map(loc => (
           <div className="card" key={loc.id}>
             <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <MapPin size={20} color="var(--color-gold)" />
-                <h3 style={{ color: 'var(--color-gold)', fontSize: '1.2rem', margin: 0 }}>{loc.name}</h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <MapPin size={22} color="var(--color-gold)" />
+                <h3 style={{ color: 'var(--color-gold)', fontSize: '1.35rem', margin: 0, letterSpacing: '0.02em', fontWeight: '600' }}>{loc.name}</h3>
               </div>
               <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{loc.desc}</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>

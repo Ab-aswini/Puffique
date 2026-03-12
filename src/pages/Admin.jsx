@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { fetchProducts, fetchLeads, fetchLocations, fetchSettings, toggleProductStatus, updateLeadStatus, addProduct, editProduct, deleteProduct, updateLocation, updateSetting } from '../utils/api';
 import { MessageSquare, Plus, Pencil, Trash2, Save, X, RefreshCw, Check } from 'lucide-react';
 

@@ -16,6 +16,7 @@ const showcaseProducts = [
     c2: '#1C1408',
     image: resolveImagePath('/products/bun-maska.png'),
     sizes: ['Regular', 'Double', 'Mini'],
+    desc: 'A quintessential pairing of soft, freshly baked brioche slathered in rich, creamy butter. The perfect companion for your morning chai.',
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const showcaseProducts = [
     c2: '#181010',
     image: resolveImagePath('/products/download-2.png'),
     sizes: ['Cutting', 'Regular', 'Large'],
+    desc: 'An exquisite fusion of traditional robust tea leaves steeped flawlessly with a velvety, sweet French caramel undertone.',
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ const showcaseProducts = [
     c2: '#0E0818',
     image: resolveImagePath('/products/cheese cake.png'),
     sizes: ['Slice', 'Half', 'Full'],
+    desc: 'A luxuriously dense NYC-style cheesecake topped with a vibrant, tart wild blueberry compote on a buttery graham crust.',
   },
   {
     id: 4,
@@ -49,6 +52,7 @@ const showcaseProducts = [
     c2: '#0C0806',
     image: resolveImagePath('/products/mocha drink..png'),
     sizes: ['Small', 'Regular', 'Large'],
+    desc: 'Deep espresso intricately blended with rich artisan cocoa and chilled milk, served over ice for a brisk, chocolatey refreshment.',
   },
 ];
 
@@ -82,7 +86,6 @@ export default function ProductShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeSize, setActiveSize] = useState(0);
-  const [flavorText, setFlavorText] = useState(showcaseProducts[0].flavor);
   const [gradientColors, setGradientColors] = useState({
     c1: showcaseProducts[0].c1,
     c2: showcaseProducts[0].c2,
@@ -135,7 +138,6 @@ export default function ProductShowcase() {
 
     const data = showcaseProducts[index];
     animateGradient(data.c1, data.c2);
-    setFlavorText(data.flavor);
 
     setTimeout(() => setIsTransitioning(false), 800);
   }, [currentIndex, isTransitioning, animateGradient]);
@@ -216,23 +218,34 @@ export default function ProductShowcase() {
         </div>
       </div>
 
-      {/* Right Info */}
-      <div className="showcase-right">
-        <p className="showcase-flavor">{flavorText}</p>
-        <div className="showcase-sizes">
-          {activeProduct.sizes.map((size, i) => (
-            <button
-              key={size}
-              className={`showcase-size-pill ${i === activeSize ? 'active' : ''}`}
-              onClick={() => setActiveSize(i)}
-            >
-              {size}
-            </button>
-          ))}
+      {/* Bottom Sheet UI (Groups right/bottom info for mobile) */}
+      <div className="showcase-bottom-sheet">
+        <div className="sheet-content">
+          <h3 className="sheet-title">{activeProduct.name}</h3>
+          <p className="sheet-desc">{activeProduct.desc}</p>
+          
+          <div className="sheet-controls">
+            <div className="showcase-sizes">
+              {activeProduct.sizes.map((size, i) => (
+                <button
+                  key={size}
+                  className={`showcase-size-pill ${i === activeSize ? 'active' : ''}`}
+                  onClick={() => setActiveSize(i)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+            
+            <div className="sheet-action">
+              <span className="showcase-price">{activeProduct.price}</span>
+              <a href="/menu" className="showcase-cta">Order Now</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Dots */}
+      {/* Navigation Dots */}
       <div className="showcase-dots">
         {showcaseProducts.map((p, i) => (
           <div
@@ -241,17 +254,6 @@ export default function ProductShowcase() {
             onClick={() => goToSection(i)}
           />
         ))}
-      </div>
-
-      {/* Bottom */}
-      <div className="showcase-bottom">
-        <span className="showcase-price">{activeProduct.price}</span>
-        <div className="showcase-bottom-center">
-          <span className="showcase-line" />
-          <p className="showcase-choose-text">Choose your flavor</p>
-          <span className="showcase-line" />
-        </div>
-        <a href="/menu" className="showcase-cta">Order Now</a>
       </div>
 
       {/* Scroll Sections */}

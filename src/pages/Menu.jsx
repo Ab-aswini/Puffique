@@ -31,20 +31,20 @@ export default function Menu() {
         <div className="grid-3">
           {products.map(product => (
             <div className="card" key={product.id}>
-              <div style={{ height: '240px', background: 'var(--color-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+              <div style={{ height: '260px', background: 'var(--color-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
                 <img
                   src={getProductImage(product)}
                   alt={product.name}
-                  style={{ maxHeight: '200px', objectFit: 'contain', filter: product.isOutOfStock ? 'grayscale(1) opacity(0.5)' : 'none' }}
+                  style={{ maxHeight: '210px', objectFit: 'contain', filter: product.isOutOfStock ? 'grayscale(1) opacity(0.5)' : 'drop-shadow(0px 10px 15px rgba(0,0,0,0.5))' }}
                 />
               </div>
               <div className="card-body">
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{product.name}</h3>
-                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '16px', minHeight: '45px' }}>
+                <h3 style={{ fontSize: '1.45rem', marginBottom: '8px', letterSpacing: '0.05em' }}>{product.name}</h3>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '20px', minHeight: '45px' }}>
                   {product.desc}
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--color-gold)', fontSize: '1.3rem', fontWeight: '700' }}>₹{product.price}</span>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '1.4rem', fontWeight: '600' }}>₹{product.price}</span>
                   {product.isOutOfStock
                     ? <span className="tag tag-oos">Out of Stock</span>
                     : <span className="tag tag-available">Available</span>

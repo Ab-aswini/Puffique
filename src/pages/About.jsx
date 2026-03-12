@@ -28,8 +28,8 @@ export default function About() {
               <img src={card.img} alt={card.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div className="card-body">
-              <span style={{ fontSize: '2.5rem', color: 'var(--color-gold)', opacity: 0.3, fontWeight: 'bold', lineHeight: 1 }}>{card.num}</span>
-              <h3 style={{ color: 'var(--color-gold)', fontSize: '1.4rem', margin: '12px 0' }}>{s[card.titleKey] || card.alt}</h3>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', color: 'var(--color-gold)', opacity: 0.15, fontWeight: '700', lineHeight: 1 }}>{card.num}</span>
+              <h3 style={{ color: 'var(--color-gold)', fontSize: '1.5rem', margin: '16px 0', letterSpacing: '0.02em' }}>{s[card.titleKey] || card.alt}</h3>
               <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
                 {s[card.descKey] || ''}
               </p>

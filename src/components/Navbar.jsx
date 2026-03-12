@@ -17,20 +17,8 @@ export default function Navbar() {
   if (location.pathname === '/admin') return null;
 
   return (
-    <nav style={{
-      position: 'fixed',
-      top: 0, left: 0, right: 0,
-      height: '70px',
-      background: 'rgba(10, 10, 10, 0.95)',
-      borderBottom: '1px solid var(--color-border)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '0 clamp(16px, 4vw, 48px)',
-      zIndex: 100,
-      backdropFilter: 'blur(8px)',
-    }}>
-      <Link to="/" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-gold)', letterSpacing: '0.05em' }}>
+    <nav className="navbar">
+      <Link to="/" className="nav-brand">
         PUFFIQUE
       </Link>
 
@@ -41,14 +29,7 @@ export default function Navbar() {
             <Link 
               key={link.path} 
               to={link.path}
-              style={{ 
-                fontSize: '0.85rem', 
-                textTransform: 'uppercase', 
-                letterSpacing: '0.06em',
-                fontWeight: 500,
-                color: location.pathname === link.path ? 'var(--color-gold)' : 'var(--color-text-secondary)',
-                transition: 'color 0.3s ease'
-              }}
+              className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
             >
               {link.name}
             </Link>

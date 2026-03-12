@@ -1,3 +1,5 @@
+/* global SpreadsheetApp, ContentService, UrlFetchApp, Logger */
+/* eslint-disable no-unused-vars */
 /**
  * ╔══════════════════════════════════════════════════════════════╗
  * ║  PUFFIQUE — Google Apps Script Backend (Full CMS)           ║
@@ -64,7 +66,7 @@ function setupSheets() {
   ], goldBg, darkText);
 
   // Remove default Sheet1
-  try { const d = ss.getSheetByName('Sheet1'); if (d && d.getLastRow() <= 1) ss.deleteSheet(d); } catch(e) {}
+  try { const d = ss.getSheetByName('Sheet1'); if (d && d.getLastRow() <= 1) ss.deleteSheet(d); } catch(e) { /* ignore */ }
 
   SpreadsheetApp.getUi().alert('✅ Setup Complete! Products, Leads, Locations, and Settings sheets are ready.\n\nDeploy → New Deployment → Web App.');
 }
