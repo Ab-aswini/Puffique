@@ -240,7 +240,6 @@
 .showcase-scroll::-webkit-scrollbar { display: none; }
 .showcase-scroll {
   -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 /* ============================
