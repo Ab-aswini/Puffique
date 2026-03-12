@@ -1,4 +1,4 @@
-# 🧈 PUFFIQUE | Bite. Sip. Bliss.
+# 🧈 PUFFIQUE | Bite. Sip. Bliss
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
@@ -9,7 +9,7 @@
 
 PUFFIQUE is a fully dynamic, premium bakery e-commerce and showcase website. It features a bespoke, dark-themed UI paired with a **completely custom headless CMS** built entirely on **Google Sheets**.
 
-![PUFFIQUE Preview](https://raw.githubusercontent.com/ab-aswini/Puffique/main/public/products/bun-maska.png) 
+![PUFFIQUE Preview](https://raw.githubusercontent.com/ab-aswini/Puffique/main/public/products/bun-maska.png)
 *(Assume image above represents the brand - swap with actual hero shot)*
 
 ---
@@ -31,35 +31,41 @@ PUFFIQUE is a fully dynamic, premium bakery e-commerce and showcase website. It 
 ## 🛠 Tech Stack
 
 **Frontend:**
-* React 18
-* Vite
-* Vanilla CSS (No bulky frameworks, pure optimized styling)
-* Lucide React (Icons)
-* React Router DOM v6
+
+- React 18
+- Vite
+- Vanilla CSS (No bulky frameworks, pure optimized styling)
+- Lucide React (Icons)
+- React Router DOM v6
 
 **Backend & Database:**
-* Google Sheets
-* Google Apps Script (REST API / Webhook)
+
+- Google Sheets
+- Google Apps Script (REST API / Webhook)
 
 ---
 
 ## 🚀 Running Locally
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/Ab-aswini/Puffique.git
 cd Puffique
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Start the dev server
+
 ```bash
 npm run dev
 ```
+
 The app will be running at `http://localhost:5173`.
 
 ---
@@ -94,6 +100,7 @@ This project requires a Google Sheet to act as the database. Follow these steps 
    - Copy the generated `Web app URL`.
    - Open `src/utils/api.js` in this codebase.
    - Replace the `WEBHOOK_URL` variable at the top with your URL:
+
      ```javascript
      const WEBHOOK_URL = 'https://script.google.com/macros/s/YOUR_ACTUAL_ID/exec';
      ```
@@ -112,6 +119,7 @@ By default, the protective PIN is: **`1234`**
 ---
 
 ## 🤝 Contributing
+
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Ab-aswini/Puffique/issues).
 
 ---
