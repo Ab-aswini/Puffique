@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchProducts, fetchSettings, fetchLocations } from '../utils/api';
+import { fetchProducts, fetchSettings, fetchLocations, resolveImagePath } from '../utils/api';
 import ProductShowcase from '../components/ProductShowcase';
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
   const getProductImage = (product) => {
     if (product.image) return product.image;
     const fallbacks = { 'Bun Maska':'/products/bun-maska.png', 'Chai':'/products/mocha drink..png', 'Cheesecake':'/products/cheese cake.png' };
-    return fallbacks[product.type] || '/products/bun-maska.png';
+    return resolveImagePath(fallbacks[product.type] || '/products/bun-maska.png');
   };
 
   return (

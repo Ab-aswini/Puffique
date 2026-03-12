@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchProducts } from '../utils/api';
+import { fetchProducts, resolveImagePath } from '../utils/api';
 
 export default function Menu() {
   const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ export default function Menu() {
   const getProductImage = (product) => {
     if (product.image) return product.image;
     const fallbacks = { 'Bun Maska':'/products/bun-maska.png', 'Chai':'/products/mocha drink..png', 'Cheesecake':'/products/cheese cake.png' };
-    return fallbacks[product.type] || '/products/bun-maska.png';
+    return resolveImagePath(fallbacks[product.type] || '/products/bun-maska.png');
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import './ProductShowcase.css';
+import { resolveImagePath } from '../utils/api';
 
 /* ================================
    PRODUCT DATA
@@ -13,7 +14,7 @@ const showcaseProducts = [
     price: '₹40',
     c1: '#6B4F2A',
     c2: '#1C1408',
-    image: '/products/bun-maska.png',
+    image: resolveImagePath('/products/bun-maska.png'),
     sizes: ['Regular', 'Double', 'Mini'],
   },
   {
@@ -24,7 +25,7 @@ const showcaseProducts = [
     price: '₹30',
     c1: '#5A3F28',
     c2: '#181010',
-    image: '/products/download-2.png',
+    image: resolveImagePath('/products/download-2.png'),
     sizes: ['Cutting', 'Regular', 'Large'],
   },
   {
@@ -35,7 +36,7 @@ const showcaseProducts = [
     price: '₹150',
     c1: '#3D2B66',
     c2: '#0E0818',
-    image: '/products/cheese cake.png',
+    image: resolveImagePath('/products/cheese cake.png'),
     sizes: ['Slice', 'Half', 'Full'],
   },
   {
@@ -46,7 +47,7 @@ const showcaseProducts = [
     price: '₹60',
     c1: '#3D2E22',
     c2: '#0C0806',
-    image: '/products/mocha drink..png',
+    image: resolveImagePath('/products/mocha drink..png'),
     sizes: ['Small', 'Regular', 'Large'],
   },
 ];

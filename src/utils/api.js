@@ -41,9 +41,19 @@ const MOCK_SETTINGS = {
   announcement: '',
 };
 
+// ---- Helpers ----
+export function resolveImagePath(path) {
+  if (!path) return '';
+  if (path.startsWith('http') || path.startsWith('data:')) return path;
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const cleanBase = base.endsWith('/') ? base : base + '/';
+  return cleanBase + cleanPath;
+}
+
 // ---- Normalizers ----
 function normalizeProduct(p) {
-  return { id: p.ID||p.id, name: p.Name||p.name, price: p.Price||p.price, type: p.Type||p.type, isOutOfStock: p.IsOutOfStock==='TRUE'||p.IsOutOfStock===true||p.isOutOfStock===true, desc: p.Description||p.desc||'', image: p.Image||p.image||'' };
+  return { id: p.ID||p.id, name: p.Name||p.name, price: p.Price||p.price, type: p.Type||p.type, isOutOfStock: p.IsOutOfStock==='TRUE'||p.IsOutOfStock===true||p.isOutOfStock===true, desc: p.Description||p.desc||'', image: resolveImagePath(p.Image||p.image||'') };
 }
 function normalizeLead(l) {
   return { id: l.ID||l.id, timestamp: l.Timestamp||l.timestamp, name: l.Name||l.name, phone: l.Phone||l.phone, outlet: l.Outlet||l.outlet, message: l.Message||l.message, status: l.Status||l.status||'New' };
