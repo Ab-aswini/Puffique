@@ -245,8 +245,8 @@ export default function Admin() {
                       <td style={td}><strong>{lead.name}</strong><br/><span style={{ fontSize:'0.8rem', color:'var(--color-text-secondary)' }}>{lead.phone}</span></td>
                       <td style={td}>{lead.outlet}</td>
                       <td style={{...td, maxWidth:'250px', fontSize:'0.85rem', color:'var(--color-text-secondary)' }}>{lead.message}</td>
-                      <td style={td}>
-                        <button onClick={()=>handleLeadStatus(lead.id,lead.status)} className="tag" style={{ cursor:'pointer', background:lead.status==='New'?'rgba(74,222,128,0.15)':lead.status==='Contacted'?'rgba(56,189,248,0.15)':'rgba(255,255,255,0.1)', color:lead.status==='New'?'#4ade80':lead.status==='Contacted'?'#38bdf8':'#a0a0a0', border:'none' }}>
+                      <td style={{ padding:'16px' }}>
+                        <button onClick={()=>handleLeadStatus(lead.id,lead.status)} className="tag" style={{ cursor:'pointer', background:lead.status==='New'?'rgba(74,222,128,0.15)':lead.status==='Contacted'?'rgba(56,189,248,0.15)':'var(--color-border)', color:lead.status==='New'?'#4ade80':lead.status==='Contacted'?'#38bdf8':'var(--color-text-secondary)', border:'none' }}>
                           {lead.status}
                         </button>
                       </td>

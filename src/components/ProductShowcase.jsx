@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import './ProductShowcase.css';
 import { resolveImagePath } from '../utils/api';
+import { useTheme } from '../context/ThemeContext';
 
 /* ================================
    PRODUCT DATA
@@ -83,19 +84,41 @@ function lerpColor(hex1, hex2, t) {
    COMPONENT
    ================================ */
 export default function ProductShowcase() {
+  const { theme } = useTheme();
+
+  // Helper to adjust colors for light mode
+  const getThemeAdjustedColor = useCallback((hex, isC1) => {
+    if (theme !== 'light') return hex;
+    // For light mode, we want visible but soft versions of the brand colors
+    // Reducing blend from 0.85 to 0.7 for more presence
+    return isC1 ? lerpColor(hex, '#FAF8F5', 0.7) : lerpColor(hex, '#FAF8F5', 0.92);
+  }, [theme]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeSize, setActiveSize] = useState(0);
   const [gradientColors, setGradientColors] = useState({
-    c1: showcaseProducts[0].c1,
-    c2: showcaseProducts[0].c2,
+    c1: getThemeAdjustedColor(showcaseProducts[0].c1, true),
+    c2: getThemeAdjustedColor(showcaseProducts[0].c2, false),
   });
 
   const scrollRef = useRef(null);
   const sectionRefs = useRef([]);
   const animFrameRef = useRef(null);
   const lastWheelTime = useRef(0);
-  const colorsRef = useRef({ c1: showcaseProducts[0].c1, c2: showcaseProducts[0].c2 });
+  const colorsRef = useRef({ 
+    c1: getThemeAdjustedColor(showcaseProducts[0].c1, true), 
+    c2: getThemeAdjustedColor(showcaseProducts[0].c2, false) 
+  });
+
+  // Sync colorsRef and gradientColors when theme or index changes
+  useEffect(() => {
+    const data = showcaseProducts[currentIndex];
+    const newC1 = getThemeAdjustedColor(data.c1, true);
+    const newC2 = getThemeAdjustedColor(data.c2, false);
+    setGradientColors({ c1: newC1, c2: newC2 });
+    colorsRef.current = { c1: newC1, c2: newC2 };
+  }, [theme, currentIndex, getThemeAdjustedColor]);
 
   useEffect(() => { colorsRef.current = gradientColors; }, [gradientColors]);
 
@@ -137,10 +160,13 @@ export default function ProductShowcase() {
     }
 
     const data = showcaseProducts[index];
-    animateGradient(data.c1, data.c2);
+    animateGradient(
+      getThemeAdjustedColor(data.c1, true), 
+      getThemeAdjustedColor(data.c2, false)
+    );
 
     setTimeout(() => setIsTransitioning(false), 800);
-  }, [currentIndex, isTransitioning, animateGradient]);
+  }, [currentIndex, isTransitioning, animateGradient, getThemeAdjustedColor]);
 
   /* Wheel */
   useEffect(() => {
@@ -201,6 +227,11 @@ export default function ProductShowcase() {
 
   const activeProduct = showcaseProducts[currentIndex];
   const [imageErrors, setImageErrors] = useState({});
+
+  // Add theme-specific shadow for the large background text
+  const bgTextShadow = theme === 'light' 
+    ? '0 0 40px rgba(0,0,0,0.05)' 
+    : '0 0 40px rgba(255,255,255,0.05)';
 
   return (
     <div className="showcase-wrapper">

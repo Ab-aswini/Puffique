@@ -35,7 +35,7 @@ export default function Menu() {
                 <img
                   src={getProductImage(product)}
                   alt={product.name}
-                  style={{ maxHeight: '210px', objectFit: 'contain', filter: product.isOutOfStock ? 'grayscale(1) opacity(0.5)' : 'drop-shadow(0px 10px 15px rgba(0,0,0,0.5))' }}
+                  style={{ maxHeight: '210px', objectFit: 'contain', filter: product.isOutOfStock ? 'grayscale(1) opacity(0.5)' : 'drop-shadow(0px 10px 15px var(--color-border))' }}
                 />
               </div>
               <div className="card-body">
